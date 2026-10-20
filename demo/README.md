@@ -44,7 +44,7 @@ cd <DEMO_DIR>
 python3 tools/mock_tool_server.py --host 0.0.0.0 --port 18089
 ```
 
-2. 安装 AgentTeams,并按安装器引导完成 LLM/API Key/端口/运行时配置(参见 [RUNBOOK 第 3 步](at/AGENTTEAMS_RUNBOOK.md#3-安装-agentteams))。
+2. 安装 AgentTeams,并按安装器引导在本机完成模型/端口/运行时配置(凭据只保存在本机,不写入仓库;参见 [RUNBOOK 第 3 步](at/AGENTTEAMS_RUNBOOK.md#3-安装-agentteams))。
 
 3. 找到 Docker 容器访问工具网关的地址:
 

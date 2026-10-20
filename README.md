@@ -79,11 +79,11 @@ Windows PowerShell 可以把 `curl` 换成 `Invoke-RestMethod`，或直接使用
 ### 跑完整 AgentTeams 链路
 
 1. 安装 AgentTeams（Docker + Element Web），参考 [demo/at/AGENTTEAMS_RUNBOOK.md](demo/at/AGENTTEAMS_RUNBOOK.md)。
-2. 设置 LLM Key，**不要把 Key 写进仓库**：
+2. 按安装器提示**在本机**配置模型与凭据；仓库内不保存任何 API Key、Token 或本地环境文件：
    ```bash
-   export AGENTTEAMS_LLM_API_KEY="your-key"
-   # 可选：使用仓库内的非交互安装脚本
-   bash scripts/run_agentteams_install.sh
+   bash <(curl -sSL https://higress.ai/hiclaw/install.sh)
+   # 如需非交互包装：先下载官方安装器，再执行
+   # AGENTTEAMS_INSTALLER=/path/to/install.sh bash scripts/run_agentteams_install.sh
    ```
 3. 启动 mock 工具网关，并用 `docker inspect` 找到 manager 容器可达的宿主机网关地址。
 4. 把 [create_agents_messages.md](demo/at/create_agents_messages.md) 中的 `<MOCK_TOOL_BASE_URL>` 替换为网关地址，发给 `manager` 创建 5 个 Worker 与 TeamLeader。
@@ -147,6 +147,7 @@ python -m unittest discover -s tests -v
 - 完整链路依赖 AgentTeams、Docker、Element Web 和可用的 LLM API；本仓库只保证 mock 网关可独立运行。
 - LLM 输出具有采样随机性；演示重点是流程、边界和证据链，不是逐字复现。
 - `demo/` 基于赛事官方 OpsPilot Zero Demo 骨架改造，来源与授权边界见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+- 仓库不包含任何真实 API Key、Token、账号密码或本地环境文件；运行所需的模型凭据只在本机配置。
 
 ## 许可证
 

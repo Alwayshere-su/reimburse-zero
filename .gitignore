@@ -2,7 +2,6 @@
 .api_key
 .env
 .env.*
-!.env.example
 .agentteams.env
 *.key
 *.pem

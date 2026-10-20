@@ -16,7 +16,7 @@
 
 - Docker 或兼容运行时。
 - Python 3。
-- 一个 AgentTeams 可使用的 LLM API Key。
+- 一个可用的模型服务凭据(只在本机配置)。
 
 检查:
 
@@ -54,21 +54,21 @@ curl -X POST http://127.0.0.1:18089/tools/normal_claim/mock_invoice.verify \
 
 ## 3. 安装 AgentTeams
 
-执行安装脚本(交互安装,按引导填写 LLM/API Key/运行时):
+执行安装脚本(交互安装,按引导在本机完成模型/运行时配置;凭据不要写入仓库):
 
 ```bash
 bash <(curl -sSL https://higress.ai/hiclaw/install.sh)
 ```
 
-安装器会引导完成语言、安装模式、版本、LLM、API Key、API 联通性测试、Embedding、Manager/Worker 运行时、端口、域名、E2EE、Docker API 安全代理和共享目录等配置。按引导操作即可,关键是看到模型 API 联通性测试通过。
+安装器会引导完成语言、安装模式、版本、LLM、模型凭据、模型联通性测试、Embedding、Manager/Worker 运行时、端口、域名、E2EE、Docker API 安全代理和共享目录等配置。按引导操作即可,关键是看到模型联通性测试通过。
 
 可参考的 demo 样例:
 
 | 引导项 | 样例值 |
 | --- | --- |
 | 语言 | 中文 |
-| LLM | 使用已有 API Key 的模型服务(如 DeepSeek 兼容 API) |
-| API 联通性 | 必须测试通过 |
+| LLM | 由安装器在本机配置的模型服务 |
+| 模型联通性 | 必须测试通过 |
 | Embedding | 可启用;失败后接受自动禁用也可以 |
 | Manager/Worker 运行时 | `qwenpow`(`copow`/`QwenPaw`) |
 | Element Web 端口 | 默认 `18088` |
