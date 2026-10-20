@@ -1,0 +1,60 @@
+{
+  "id": "high_risk_claim",
+  "claim_id": "CLM-2003",
+  "title": "采购报销:办公设备采购疑似重复报销",
+  "applicant": {
+    "name": "陈晓",
+    "dept": "行政部",
+    "level": "P5",
+    "cost_center": "CC-ADMIN-03"
+  },
+  "claim": {
+    "time": "2026-03-15",
+    "type": "采购",
+    "amount": 15800.00,
+    "currency": "CNY",
+    "purpose": "笔记本电脑采购(3 台,单价 5266.67 元)",
+    "attachments": ["invoice_CN2026-0003.jpg", "purchase_order.pdf", "delivery_receipt.pdf"]
+  },
+  "invoice_verify": {
+    "invoice_no": "CN2026-0003",
+    "invoice_code": "011002600333",
+    "issue_date": "2026-03-14",
+    "amount": 15800.00,
+    "seller": "杭州文三电子科技有限公司",
+    "buyer_tax_id": "91330100MA27XXXXX1",
+    "verify_status": "authentic",
+    "consistency": {"amount": "match", "seller": "match", "buyer_tax_id": "match"},
+    "checked_at": "2026-03-15T10:00:00+08:00"
+  },
+  "policies": [
+    {
+      "id": "POL-PUR-01",
+      "rule": "采购:单件单价 5000 元以上需事前审批;单笔总额上限 20000 元",
+      "match_terms": ["采购", "事前审批", "5000"],
+      "limit": 20000,
+      "limit_unit": "元/笔"
+    }
+  ],
+  "history_claims": [
+    {
+      "claim_id": "CLM-1710",
+      "invoice_no": "CN2026-0003",
+      "date": "2026-02-20",
+      "amount": 15800.00,
+      "applicant": "陈晓",
+      "status": "paid",
+      "similarity": 0.98
+    }
+  ],
+  "expected_decision": {
+    "verdict": "escalate_to_human",
+    "risk_level": "L2",
+    "reason": "发票 CN2026-0003 与历史单据 CLM-1710 高度相似(相似度 0.98),疑似重复报销;且单件单价超事前审批线。生成人工审批任务,打款被阻断直至审批通过"
+  },
+  "payment_policy": {
+    "approval_required": true,
+    "note": "疑似重复报销,支付强制审批;无审批回执时 mock_payment.execute 返回 blocked"
+  },
+  "risk_flags": ["duplicate_invoice", "amount_over_preapproval"]
+}

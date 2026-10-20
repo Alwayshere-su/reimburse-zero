@@ -1,0 +1,60 @@
+{
+  "id": "normal_claim",
+  "claim_id": "CLM-2001",
+  "title": "差旅报销:杭州→北京客户拜访差旅费",
+  "applicant": {
+    "name": "王小明",
+    "dept": "销售部",
+    "level": "P6",
+    "cost_center": "CC-SALES-01"
+  },
+  "claim": {
+    "time": "2026-03-10",
+    "type": "差旅",
+    "amount": 1860.00,
+    "currency": "CNY",
+    "purpose": "北京客户拜访,机票+住宿+市内交通",
+    "attachments": ["invoice_CN2026-0001.jpg", "flight_boarding_pass.pdf", "hotel_receipt.pdf", "taxi_receipts.pdf"]
+  },
+  "invoice_verify": {
+    "invoice_no": "CN2026-0001",
+    "invoice_code": "011002600111",
+    "issue_date": "2026-03-08",
+    "amount": 1280.00,
+    "seller": "北京国航销售服务有限公司",
+    "buyer_tax_id": "91330100MA27XXXXX1",
+    "verify_status": "authentic",
+    "consistency": {"amount": "match", "seller": "match", "buyer_tax_id": "match"},
+    "checked_at": "2026-03-10T10:00:00+08:00"
+  },
+  "policies": [
+    {
+      "id": "POL-TRAVEL-01",
+      "rule": "差旅:高铁二等座/经济舱机票实报实销;住宿每日上限 500 元;市内交通实报实销需附行程",
+      "match_terms": ["差旅", "住宿", "500", "市内交通"],
+      "limit": 500,
+      "limit_unit": "元/天"
+    }
+  ],
+  "history_claims": [
+    {
+      "claim_id": "CLM-1900",
+      "invoice_no": "CN2025-8899",
+      "date": "2026-01-05",
+      "amount": 420.00,
+      "applicant": "王小明",
+      "status": "paid",
+      "similarity": 0.02
+    }
+  ],
+  "expected_decision": {
+    "verdict": "approve",
+    "risk_level": "L0",
+    "reason": "发票真实且要素一致,费用符合差旅标准(住宿未超 500 元/天上限),无重复报销记录,低风险自动放行"
+  },
+  "payment_policy": {
+    "approval_required": false,
+    "note": "低风险小额支付自动放行(演示 L0 自动执行分支)"
+  },
+  "risk_flags": []
+}

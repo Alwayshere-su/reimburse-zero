@@ -1,0 +1,50 @@
+{
+  "registry_name": "nacos-ai-registry-mock",
+  "labels": {
+    "dev": "latest candidate for demo iteration",
+    "stable": "version loaded by the AT runner",
+    "rollback": "last known good resource binding"
+  },
+  "prompts": [
+    {
+      "name": "reimburse.audit.system",
+      "version": "0.1.0",
+      "label": "stable",
+      "owner": "demo-team",
+      "description": "System prompt contract for evidence-based expense claim auditing."
+    }
+  ],
+  "skills": [
+    {"name": "doc-extract", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "impact-assess", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "policy-rag", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "data-query", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "risk-assess", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "approval-guard", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "payment-verify", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "invoice-verify", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "duplicate-check", "version": "0.1.0", "label": "stable", "state": "FORMAL"},
+    {"name": "audit-report", "version": "0.1.0", "label": "stable", "state": "FORMAL"}
+  ],
+  "agent_specs": [
+    {"name": "intake", "version": "0.1.0", "label": "stable", "file": "agents/intake/Agent.md"},
+    {"name": "audit-analyst", "version": "0.1.0", "label": "stable", "file": "agents/audit-analyst/Agent.md"},
+    {"name": "risk-rater", "version": "0.1.0", "label": "stable", "file": "agents/risk-rater/Agent.md"},
+    {"name": "executor", "version": "0.1.0", "label": "stable", "file": "agents/executor/Agent.md"},
+    {"name": "reviewer", "version": "0.1.0", "label": "stable", "file": "agents/reviewer/Agent.md"}
+  ],
+  "agent_teams": [
+    {
+      "name": "reimburse-zero-demo",
+      "version": "0.1.0",
+      "label": "stable",
+      "file": "at/team_spec.json",
+      "release_policy": "Only FORMAL skills may be loaded by stable team specs."
+    }
+  ],
+  "audit_policy": {
+    "required_records": ["upload", "review", "publish", "agent_invocation"],
+    "risk_gate": "L0/L1 can auto-execute in demo; L2/L3 must produce approval plan only. Payment is ALWAYS approval-gated.",
+    "compliance": "Data is simulated and desensitized; no real employee or invoice data."
+  }
+}

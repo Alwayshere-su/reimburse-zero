@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile
+        run: python -m compileall -q demo tests
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Check mock gateway starts
+        run: |
+          python demo/tools/mock_tool_server.py --host 127.0.0.1 --port 18089 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:18089/health >/dev/null; then
+              break
+            fi
+            sleep 0.5
+          done
+          curl -fsS http://127.0.0.1:18089/health
+          curl -fsS http://127.0.0.1:18089/scenarios

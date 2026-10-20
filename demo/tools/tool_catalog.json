@@ -1,0 +1,43 @@
+{
+  "transport": "http-mock-tool-gateway",
+  "base_url": "http://<TOOL_HOST_REACHABLE_BY_WORKER>:18089",
+  "call_pattern": "POST /tools/{scenario_id}/{tool_name}.{function_name}",
+  "tools": [
+    {
+      "name": "mock_claim",
+      "kind": "http-mock-adapter",
+      "functions": ["get_claim", "list_history"],
+      "future_mcp_mapping": "finance.claim_query"
+    },
+    {
+      "name": "mock_invoice",
+      "kind": "http-mock-adapter",
+      "functions": ["verify"],
+      "future_mcp_mapping": "tax.invoice_verify"
+    },
+    {
+      "name": "mock_policy",
+      "kind": "http-mock-adapter",
+      "functions": ["search"],
+      "future_mcp_mapping": "knowledge.policy_rag"
+    },
+    {
+      "name": "mock_payment",
+      "kind": "http-mock-adapter",
+      "functions": ["execute", "rollback"],
+      "future_mcp_mapping": "payment.gateway"
+    },
+    {
+      "name": "mock_approval",
+      "kind": "http-mock-adapter",
+      "functions": ["create_approval_task", "resolve"],
+      "future_mcp_mapping": "workflow.approval"
+    },
+    {
+      "name": "mock_ledger",
+      "kind": "http-mock-adapter",
+      "functions": ["post_entry", "verify_entry"],
+      "future_mcp_mapping": "finance.ledger"
+    }
+  ]
+}
