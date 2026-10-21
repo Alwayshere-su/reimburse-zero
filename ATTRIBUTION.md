@@ -1,5 +1,16 @@
 # Attribution and third-party notice
 
+> **License boundary / 授权提示**
+>
+> `demo/` is derived from the official **OpsPilot Zero Demo**, whose original archive
+> was distributed **without a license file**. Therefore `demo/` is **not licensed under
+> Apache-2.0** and may not be redistributed or used commercially without authorization
+> from the competition organizers or the original authors.
+>
+> `demo/` 派生自赛事官方 OpsPilot Zero Demo 骨架，官方原始压缩包未附许可证。因此
+> `demo/` **不适用本仓库的 Apache-2.0 许可**，再分发或商用前需取得主办方或原作者授权。
+> 本仓库其余由作者编写的代码仍按 Apache-2.0 授权。
+
 ## OpsPilot Zero Demo
 
 `demo/` is adapted from the **OpsPilot Zero Demo** distributed by the 2026 GOAI competition organizers for the AgentTeams track. The original demo uses a configuration-driven skeleton: agents, skills, team specification, scenarios, and an HTTP mock tool gateway.
@@ -14,7 +25,7 @@ The original archive is **not** redistributed in this repository.
 
 - AgentTeams, Higress, Nacos, Docker, Element Web, DeepSeek, and Qwen are referenced only as integration targets or example runtimes. Their names and trademarks belong to their respective owners.
 - All employee names, invoice numbers, claim IDs, and amounts in `demo/scenarios/` are fictional and synthetic. No real enterprise or personal data is included.
-- The PPT in `slides/` was produced for the competition submission; the official submission template is not redistributed here.
+- The competition deck is not distributed in this repository; the official submission template is not redistributed here.
 
 ## Data
 

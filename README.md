@@ -13,7 +13,7 @@
 
 **单据接收 → 政策稽核 → 风险评级 → 处置执行 → 复盘沉淀**
 
-每个 Agent 只做职责内的事，通过 AgentTeams 共享上下文、传递中间结论；打款动作只生成审批计划，AI 不自动发起支付。仓库同时提供方案文档、答辩 PPT 和一套可独立启动的 mock 工具网关。
+每个 Agent 只做职责内的事，通过 AgentTeams 共享上下文、传递中间结论；打款动作只生成审批计划，AI 不自动发起支付。仓库同时提供方案文档和一套可独立启动的 mock 工具网关。
 
 > **状态**：初赛最小可运行 demo，不是生产系统。员工、发票、单据均为虚构脱敏数据，不包含任何真实企业数据。
 >
@@ -113,16 +113,13 @@ Windows PowerShell 可以把 `curl` 换成 `Invoke-RestMethod`，或直接使用
 │   ├── 方案.md               # 完整参赛方案
 │   ├── 改造指南.md           # 官方 OpsPilot Zero → 报销场景的映射
 │   └── PPT优化诊断报告.md    # PPT 结构与信息密度复盘
-├── slides/
-│   ├── reimburse-zero-deck.pptx
-│   └── reimburse-zero-deck.pdf
 ├── scripts/
 │   └── run_agentteams_install.sh
 ├── tests/
 │   └── test_mock_tools.py
 ├── ATTRIBUTION.md            # 第三方素材与改造来源说明
 ├── LICENSE                   # Apache-2.0（代码与 Skill）
-└── LICENSE-docs              # CC BY 4.0（文档与 PPT）
+└── LICENSE-docs              # CC BY 4.0（文档）
 ```
 
 ## 文档
@@ -131,7 +128,6 @@ Windows PowerShell 可以把 `curl` 换成 `Invoke-RestMethod`，或直接使用
 - [改造指南](docs/改造指南.md)：官方 Demo 与报销场景的逐目录映射，以及从零跑通的步骤。
 - [AgentTeams 运行手册](demo/at/AGENTTEAMS_RUNBOOK.md)：环境安装、网关连通性、创建消息、任务发送、验收清单。
 - [PPT 优化诊断](docs/PPT优化诊断报告.md)：18 页版本的信息密度问题与改版建议。
-- 答辩 PPT：[pptx](slides/reimburse-zero-deck.pptx) / [pdf](slides/reimburse-zero-deck.pdf)。
 
 ## 测试
 
@@ -146,11 +142,13 @@ python -m unittest discover -s tests -v
 - 所有外部系统都是 mock：税务验真、财务 ERP、支付网关、审批流均未接真实服务。
 - 完整链路依赖 AgentTeams、Docker、Element Web 和可用的 LLM API；本仓库只保证 mock 网关可独立运行。
 - LLM 输出具有采样随机性；演示重点是流程、边界和证据链，不是逐字复现。
-- `demo/` 基于赛事官方 OpsPilot Zero Demo 骨架改造，来源与授权边界见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+- `demo/` 基于赛事官方 OpsPilot Zero Demo 骨架改造。官方原始压缩包未附带许可证文件，因此 **`demo/` 不属于 Apache-2.0 授权范围**，再分发或商用前需获得主办方或原作者授权；来源与授权边界见 [ATTRIBUTION.md](ATTRIBUTION.md)。
 - 仓库不包含任何真实 API Key、Token、账号密码或本地环境文件；运行所需的模型凭据只在本机配置。
 
 ## 许可证
 
 - 代码与 Skill：Apache-2.0，见 [LICENSE](LICENSE)。
-- 文档与 PPT：CC BY 4.0，见 [LICENSE-docs](LICENSE-docs)。
+- 文档：CC BY 4.0，见 [LICENSE-docs](LICENSE-docs)。
+- `demo/`：派生自未附许可证的官方 OpsPilot Zero Demo 骨架，**不在上述许可证覆盖范围内**，需获得官方或原作者授权后方可再分发。
 - 官方 OpsPilot Zero Demo 的原始版权归其作者所有；如官方发布许可证，以官方许可证为准。
+- 答辩 PPT 不随仓库分发。

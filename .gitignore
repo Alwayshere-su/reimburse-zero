@@ -32,3 +32,6 @@ workspace/
 
 # Archives kept outside the repository
 *.zip
+
+# Competition deck: kept locally, not distributed
+slides/
